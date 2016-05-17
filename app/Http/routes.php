@@ -48,6 +48,7 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
 
 
 Route::get('auth', ['as' => 'auth', 'uses' => 'AuthenticationController@postLogin']);
+Route::post('auth', ['as' => 'auth', 'uses' => 'AuthenticationController@postLogin']);
 //Route::auth();
 //$this->get('login', 'Auth\AuthController@showLoginForm');
 //$this->post('login', 'Auth\AuthController@login');
