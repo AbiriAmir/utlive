@@ -14,6 +14,12 @@
 </div><!-- /.box -->
 @endsection
 
+@section('styles')
+    @parent
+    {{--	<link rel="stylesheet" href="{{ asset('assets/vendor/calendar/skins/aqua/theme.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('assets/datepicker/bootstrap-datepicker.min.css') }}" />
+
+@endsection
 
 @section('js')
     @parent
