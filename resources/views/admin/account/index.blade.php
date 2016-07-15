@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">لیست اکانت‌ها</h3>
+                    <h3 class="box-title">لیست اکانت‌ها</h3> &nbsp;&nbsp;&nbsp; <span style="font-size: 0.8em;">[ <a href="{{ route('admin::admin.account.create') }}">افزودن</a> ]</span>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="account-data" class="table table-bordered table-hover">
@@ -32,7 +32,14 @@
                             <td>{{ $account->start_date }}</td>
                             <td>{{ $account->end_date }}</td>
                             <td>{{ jDate::forge($account->created_at)->format('datetime') }}</td>
-                            <td><a href="{{ route('admin::admin.account.edit', ['account' => $account]) }}"><i class="fa fa-pencil"></i> </a></td>
+                            <td>
+                                <a href="{{ route('admin::admin.account.edit', ['account' => $account]) }}"><i class="fa fa-pencil"></i> </a>
+                                {{--<a href="{{ route('admin::admin.account.destroy', ['account' => $account]) }}"><i class="fa fa-trash"></i> </a>--}}
+
+                                @include('admin.partials.delete', ['data' => $account, 'name' => 'account'])
+
+                                @include('admin.account.modal', ['data' => $account])
+                            </td>
                         </tr>
                         @endforeach
 

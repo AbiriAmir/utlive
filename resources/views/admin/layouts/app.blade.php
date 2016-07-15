@@ -127,7 +127,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-user"></i>
             <span>مدیران سایت</span>
             <i class="fa fa-angle-left pull-left"></i>
           </a>
@@ -139,7 +139,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-video-camera"></i>
             <span>کاربران لایو</span>
             <i class="fa fa-angle-left pull-left"></i>
           </a>
@@ -170,6 +170,7 @@
 
     <!-- Main content -->
     <section class="content">
+      @include('admin.partials.flashes')
       @section('content')
       @show
     </section><!-- /.content -->

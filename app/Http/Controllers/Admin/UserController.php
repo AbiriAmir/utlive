@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($request->input('password'));
         if(User::create($data))
-            return redirect()->route('admin::admin.user.index')->with('message', 'اکانت با موفقیت افزوده شد');
+            return redirect()->route('admin::admin.user.index')->withFlashMessage('اکانت با موفقیت افزوده شد');
         else
             return redirect()->route('admin::admin.user.index')->withErrors('خطا!');
 
@@ -71,6 +72,16 @@ class UserController extends Controller
             $data['password'] = bcrypt($data['password']);
         
         $user->update($data);
-        return redirect()->route('admin::admin.user.index')->with('message', 'اکانت با موفقیت ویرایش شد');
+        return redirect()->route('admin::admin.user.index')->withFlashMessage('اکانت با موفقیت ویرایش شد');
+    }
+
+
+    public function destroy(Request $request, User $user) {
+        if(Auth::user()->id != $user->id) {
+            $user->delete();
+            return redirect()->route('admin::admin.user.index')->withFlashMessage('کاربر با موفقیت حذف شد');
+        } else {
+            return redirect()->route('admin::admin.user.index')->withFlashMessage('شما نمی‌توانید اکانت خودتان را حذف نمایید.')->withFlashType('danger');
+        }
     }
 }

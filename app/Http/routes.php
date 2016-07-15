@@ -22,6 +22,7 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
         Route::resource('account', 'AccountController');
+        Route::post('account/{account}/download', ['as' => 'admin.account.download', 'uses' => 'AccountController@download']);
         Route::resource('user', 'UserController');
     });
 

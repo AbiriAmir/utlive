@@ -12,6 +12,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>نام</th>
                             <th>ایمیل</th>
                             <th>تاریخ ایجاد</th>
                             <th>عملیات</th>
@@ -24,9 +25,13 @@
                         <tr>
                             <?php $no++ ?>
                             <td>{{ $no }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ jDate::forge($user->created_at)->format('datetime') }}</td>
-                            <td><a href="{{ route('admin::admin.user.edit', ['user' => $user]) }}"><i class="fa fa-pencil"></i> </a></td>
+                            <td>
+                                <a href="{{ route('admin::admin.user.edit', ['user' => $user]) }}"><i class="fa fa-pencil"></i> </a>
+                                @include('admin.partials.delete', ['data' => $user, 'name' => 'user'])
+                            </td>
                         </tr>
                         @endforeach
 

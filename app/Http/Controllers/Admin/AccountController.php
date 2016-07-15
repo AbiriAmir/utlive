@@ -6,13 +6,14 @@ use App\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Storage;
+use View;
 
 class AccountController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -47,7 +48,7 @@ class AccountController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($request->input('password'));
         if(Account::create($data))
-            return redirect()->route('admin::admin.account.index')->with('message', 'اکانت با موفقیت افزوده شد');
+            return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت افزوده شد');
         else
             return redirect()->route('admin::admin.account.index')->withErrors('خطا!');
 
@@ -64,7 +65,7 @@ class AccountController extends Controller
             'name'          => 'required|max:255',
             'stream_name'   => 'required|max:255',
             'username'      => 'required|max:255|unique:users,username',
-            'password'      => 'min:6|confirmed',
+            'password'      => 'required|min:6|confirmed',
         ]);
 
         $data = !$request->has('password') ? $request->except('password') : $request->all();
@@ -73,6 +74,39 @@ class AccountController extends Controller
             $data['password'] = bcrypt($data['password']);
         
         $account->update($data);
-        return redirect()->route('admin::admin.account.index')->with('message', 'اکانت با موفقیت ویرایش شد');
+        return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت ویرایش شد');
+    }
+
+    public function destroy(Request $request, Account $account) {
+        $account->delete();
+
+        return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت حذف شد');
+    }
+
+
+    public function download(Request $request, Account $account) {
+
+        $this->validate($request, [
+            'password'      => 'required|min:6|confirmed',
+        ]);
+
+        $account->update([
+            'password'  => bcrypt($request->input('password')),
+        ]);
+
+        $view = View::make('account.config', [
+            'account'   => $account,
+            'password'  => $request->input('password'),
+        ]);
+
+        $contents = $view->render();
+
+
+        $filename = "configs/" . sha1($account->stream_name) . ".wcst";
+        Storage::disk('local')->put($filename, $contents);
+
+        return response()->download( storage_path("app/$filename") );
+
+
     }
 }
