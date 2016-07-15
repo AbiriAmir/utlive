@@ -16,14 +16,14 @@ class AuthenticationController extends Controller
         $validator = Validator::make($request->all(), [
             'username'  => 'required|exists:accounts,username',
             'password'  => 'required',
-            'stream_name'   => 'required',
+            'name'   => 'required',
         ]);
 
         if($validator->fails())
             abort(403, 'Validation Failed');
 
         $account = Account::where('username', $request->get('username'))
-            ->where('stream_name', $request->input('stream_name'))
+            ->where('stream_name', $request->input('name'))
             ->active()
             ->first();
 
