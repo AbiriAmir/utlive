@@ -11,6 +11,6 @@ class AdminGenerator extends Seeder
      */
     public function run()
     {
-        \App\User::create(['name' => 'مدیر', 'password' => bcrypt('123456'), 'email' => 'mr.abiri@gmail.com',]);
+        \App\User::create(['name' => 'مدیر', 'password' => bcrypt('123456'), 'email' => 'admin@ut.ac.ir',]);
     }
 }
