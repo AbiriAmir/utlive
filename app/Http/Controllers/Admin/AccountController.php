@@ -47,8 +47,15 @@ class AccountController extends Controller
 
         $data = $request->all();
         $data['password'] = bcrypt($request->input('password'));
-        if(Account::create($data))
-            return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت افزوده شد');
+        $account = Account::create($data);
+        if($account)
+            return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت افزوده شد')->with(
+                [
+                    'download_config'   => 1,
+                    'password'          => $request->input('password'),
+                    'account'           => $account,
+                ]
+            );
         else
             return redirect()->route('admin::admin.account.index')->withErrors('خطا!');
 

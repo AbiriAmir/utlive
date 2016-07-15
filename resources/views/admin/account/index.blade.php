@@ -1,6 +1,21 @@
 @extends('admin.layouts.app')
 
+
 @section('content')
+    @if(Session::has('download_config'))
+        <div class="alert flash-message text-center alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+
+            کاربر گرامی، برای دریافت فایل تنظیمات استریمینگ روی دکمه‌ی زیر کلیک کنید.
+
+            {!! Form::open(['method' => 'post', 'route' => ['admin::admin.account.download', Session::get('account')]]) !!}
+            {!! Form::hidden('password', Session::get('password')) !!}
+            {!! Form::hidden('password_confirmation', Session::get('password')) !!}
+            {!! Form::submit('دانلود', ['class' => 'btn btn-info']) !!}
+            {!! Form::close() !!}
+        </div>
+    @endif
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
