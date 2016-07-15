@@ -1,13 +1,13 @@
 @if(!isset($doNotShowLink))
-    <a data-toggle="modal" href="#modal-delete-{!! $data->id !!}">
+    <a data-toggle="modal" href="#modal-delete-{!! isset($data->id) ? $data->id : $data !!}">
         <i class="fa fa-trash-o"></i>
     </a>
 @endif
 @if(!isset($doNotShowModal))
-    <div id="modal-delete-{!! $data->id !!}" class="modal text-right fade">
+    <div id="modal-delete-{!! isset($data->id) ? $data->id : $data !!}" class="modal text-right fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['method' => 'DELETE', 'route' => ["admin::admin.$name.destroy", $data->id]])!!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ["admin::admin.$name.destroy", $data]])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h1 class="modal-title">حذف</h1>

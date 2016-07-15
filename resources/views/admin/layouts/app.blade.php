@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>@yield('siteTitle', '')</title>
+  <title>@yield('siteTitle', 'UT ACM Live')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.4 -->
@@ -139,13 +139,26 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-video-camera"></i>
+            <i class="fa fa-users"></i>
             <span>کاربران لایو</span>
             <i class="fa fa-angle-left pull-left"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('admin::admin.account.index') }}"><i class="fa fa-circle-o"></i> لیست</a></li>
             <li><a href="{{ route('admin::admin.account.create') }}"><i class="fa fa-circle-o"></i> افزودن</a></li>
+          </ul>
+        </li>
+
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-video-camera"></i>
+            <span>ویدئوهای ضبط شده</span>
+            <i class="fa fa-angle-left pull-left"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('admin::admin.recording.index') }}"><i class="fa fa-circle-o"></i> لیست</a></li>
+{{--            <li><a href="{{ route('admin::admin.recording.create') }}"><i class="fa fa-circle-o"></i> افزودن</a></li>--}}
           </ul>
         </li>
 

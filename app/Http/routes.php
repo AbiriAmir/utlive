@@ -24,6 +24,7 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
         Route::resource('account', 'AccountController');
         Route::post('account/{account}/download', ['as' => 'admin.account.download', 'uses' => 'AccountController@download']);
         Route::resource('user', 'UserController');
+        Route::resource('recording', 'RecordingController');
     });
 
 
