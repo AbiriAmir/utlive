@@ -7,7 +7,7 @@
     <chroma_key_data />
     <advanced_output>
         <output_list output_last_selected="149C4D3E-D6BA-4492-9EF0-343C19EF5DBB">
-            <output output_enabled="1" output_type="2" output_transport="7" output_url="{{ config('output_url') }}" output_location="{{ $account->stream_name }}?username={{ $account->username }}&amp;password={{ $password }}" output_branding="RTMP Server" output_display_name="UT Streaming Server" output_display_group_name="RTMP Server" output_guid="4A150ED4-AD0A-4942-A07B-534EB34FACB1" unique_id="1" output_presetname="720@1Mbit" impersonate_fme_2_5="0" flash_user_agent="Wirecast/FM 1.0" output_user_name="UT Streaming Server" output_settings_complete="1" output_id="149C4D3E-D6BA-4492-9EF0-343C19EF5DBB" />
+            <output output_enabled="1" output_type="2" output_transport="7" output_url="{{ config('output.output_url') }}" output_location="{{ $account->stream_name }}?username={{ $account->username }}&amp;password={{ $password }}" output_branding="RTMP Server" output_display_name="UT Streaming Server" output_display_group_name="RTMP Server" output_guid="4A150ED4-AD0A-4942-A07B-534EB34FACB1" unique_id="1" output_presetname="720@1Mbit" impersonate_fme_2_5="0" flash_user_agent="Wirecast/FM 1.0" output_user_name="UT Streaming Server" output_settings_complete="1" output_id="149C4D3E-D6BA-4492-9EF0-343C19EF5DBB" />
         </output_list>
     </advanced_output>
     <output_presets>
