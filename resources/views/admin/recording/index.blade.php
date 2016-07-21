@@ -26,7 +26,7 @@
                             <td>{{ $no }}</td>
                             <td>{{ $recording }}</td>
                             <td>
-                                @include('admin.partials.delete', ['data' => $recording, 'name' => 'recording'])
+                                @include('admin.partials.delete', ['data' => $recording, 'index' => $no, 'name' => 'recording'])
                             </td>
                         </tr>
                         @endforeach

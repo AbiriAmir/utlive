@@ -1,10 +1,10 @@
 @if(!isset($doNotShowLink))
-    <a data-toggle="modal" href="#modal-delete-{!! isset($data->id) ? $data->id : $data !!}">
+    <a data-toggle="modal" href="#modal-delete-{!! isset($index) ? $index : (isset($data->id) ? $data->id : $data) !!}">
         <i class="fa fa-trash-o"></i>
     </a>
 @endif
 @if(!isset($doNotShowModal))
-    <div id="modal-delete-{!! isset($data->id) ? $data->id : $data !!}" class="modal text-right fade">
+    <div id="modal-delete-{!! isset($index) ? $index : (isset($data->id) ? $data->id : $data) !!}" class="modal text-right fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 {!! Form::open(['method' => 'DELETE', 'route' => ["admin::admin.$name.destroy", $data]])!!}
