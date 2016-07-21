@@ -54,6 +54,9 @@
                                 @include('admin.partials.delete', ['data' => $account, 'name' => 'account'])
 
                                 @include('admin.account.modal', ['data' => $account])
+
+
+                                <a href="{{ route('admin::admin.account.show', ['account' => $account]) }}"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
                         @endforeach

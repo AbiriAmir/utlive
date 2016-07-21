@@ -1,15 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    افزودن اکانت
+    آپلود فایل
 @endsection
 @section('content')
     <div class="box box-warning">
     <div class="box-header with-border">
-        <h3 class="box-title">افزودن اکانت</h3>
+        <h3 class="box-title">آپلود فایل ضبط شده</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-        @include('admin.account.form')
+        @include('admin.recording.form')
     </div><!-- /.box-body -->
 </div><!-- /.box -->
 @endsection

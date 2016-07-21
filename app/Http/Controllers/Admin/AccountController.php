@@ -31,6 +31,12 @@ class AccountController extends Controller
         return view('admin.account.index')->with('accounts', $accounts);
     }
 
+    public function show(Request $request, Account $account) {
+        $v = view('account.html', compact('account'));
+        $code = $v->render();
+        return view('admin.account.show', compact('account', 'code'));
+    }
+
 
     public function create() {
         return view('admin.account.new');
@@ -49,7 +55,7 @@ class AccountController extends Controller
         $data['password'] = bcrypt($request->input('password'));
         $account = Account::create($data);
         if($account)
-            return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت افزوده شد')->with(
+            return redirect()->route('admin::admin.account.show', ['account' => $account])->withFlashMessage('اکانت با موفقیت افزوده شد')->with(
                 [
                     'download_config'   => 1,
                     'password'          => $request->input('password'),
@@ -72,7 +78,7 @@ class AccountController extends Controller
             'name'          => 'required|max:255',
             'stream_name'   => 'required|max:255',
             'username'      => 'required|max:255|unique:users,username',
-            'password'      => 'required|min:6|confirmed',
+            'password'      => 'min:6|confirmed',
         ]);
 
         $data = !$request->has('password') ? $request->except('password') : $request->all();
@@ -81,7 +87,7 @@ class AccountController extends Controller
             $data['password'] = bcrypt($data['password']);
         
         $account->update($data);
-        return redirect()->route('admin::admin.account.index')->withFlashMessage('اکانت با موفقیت ویرایش شد');
+        return redirect()->route('admin::admin.account.show', ['account' => $account])->withFlashMessage('اکانت با موفقیت ویرایش شد');
     }
 
     public function destroy(Request $request, Account $account) {

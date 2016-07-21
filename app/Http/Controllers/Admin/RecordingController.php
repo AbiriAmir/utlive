@@ -39,8 +39,16 @@ class RecordingController extends Controller
 
     public function store(Request $request) {
 
-        /* TODO */
+        $this->validate($request, [
+            'file'  => 'required|mimes:flv'
+        ]);
 
+        Storage::disk('recording')->put(
+            $request->file('file')->getClientOriginalName(),
+            file_get_contents($request->file('file')->getRealPath())
+        );
+
+        return redirect()->route('admin::admin.recording.index')->withFlashMessage('فایل با موفقیت آپلود شد.');
     }
 
     public function destroy(Request $request, $recording) {
