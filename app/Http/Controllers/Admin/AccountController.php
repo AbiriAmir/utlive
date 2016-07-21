@@ -46,7 +46,7 @@ class AccountController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'name'          => 'required|max:255',
-            'stream_name'   => 'required|max:255',
+            'stream_name'   => 'required|max:255|unique:accounts,stream_name',
             'username'      => 'required|max:255|unique:accounts,username',
             'password'      => 'required|min:6|confirmed',
         ]);
@@ -76,7 +76,7 @@ class AccountController extends Controller
 
         $this->validate($request, [
             'name'          => 'required|max:255',
-            'stream_name'   => 'required|max:255',
+            'stream_name'   => 'required|max:255|unique:accounts,stream_name,' . $account->id,
             'username'      => 'required|max:255|unique:users,username',
             'password'      => 'min:6|confirmed',
         ]);
